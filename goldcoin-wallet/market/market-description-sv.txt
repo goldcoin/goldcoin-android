@@ -1,0 +1,29 @@
+Detta är en fristående Bitcoin plånbok för Android. Du kan skicka Bitcoins mellan telefoner genom att scanna den QR kod som visas på skärmen. Eller använda NFC (Near Field Communication).
+
+FUNKTIONER:
+
+• Visa plånbokens värde i Bitcoins och andra valutor.
+• Skicka och ta emot Bitcoins via NFC, QR-koder eller en Bitcoin URL.
+• Adressbok för de Bitcoin adresser man använder ofta.
+• Påbörja transaktioner medan du är offline, de utförs när du kommer online.
+• Systemnotifikationer när Bitcoins skickats till dig, och när plånboken kommunicerar med nätverket.
+• App widget som visar plånbokens värde (kräver att appen flyttats till telefonen).
+
+KÄNDA PROBLEM:
+
+• När appen körs för första gången så visas ibland bara en vit skärm under några sekunder. Det är helt normalt.
+
+Du kan få dina första Bitcoins att leka med från
+https://freebitcoins.appspot.com
+
+Du kan lära dig mer om Bitcoin genom att besöka
+http://bitcoin.org
+
+Om du vill hjälpa till med utvecklingen av Bitcoin Wallet så kan du hitta projektet här
+https://code.google.com/p/bitcoin-wallet/
+
+Licens: GPLv3
+Använd på egen risk!
+
+--
+LTC bitcoin wallet blockchain bitcoinandroid androidbitcoin Geldbörse Кошелёк plånbok mobile payment

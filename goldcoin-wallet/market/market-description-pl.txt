@@ -1,0 +1,29 @@
+Samodzielny portfel Bitcoin dla Twojego urządzenia Android. Możesz wysyłać Bitcoin pomiędzy telefonami skanując kod QR, który jest wyświetlany przez aplikacje, lub przez NFC (Near Field Communication).
+
+FUNKCJE:
+
+• Wyświetlanie stanu konta portfela w Bitcoin i rożnych innych walutach.
+• Wysyłanie i odbieranie Bitcoin przez NFC, kod QR albo Bitcoin URL.
+• Książka adresowa dla regularnie używanych adresów Bitcoin.
+• Możliwość dodania transakcji offline, wykonywanych po połączeniu z siecią.
+• Notyfikacje systemowe o połączeniu z siecią Bitcoin i otrzymanych monetach.
+• Widget na stan konta Bitcoin (wymaga: aplikacja na telefonie).
+
+ZNANE PROBLEMY (PROSZĘ PRZECZYTAJ):
+
+• Przy pierwszym uruchomieniu, aplikacja może wyświetlać przez jakiś czas jedynie biały ekran. To normalne.
+
+Możesz dostać kilka pierwszych Bitcoinów za darmo:
+https://freebitcoins.appspot.com/
+
+Więcej o Bitcoin dowiesz się pod adresem:
+http://bitcoin.org
+
+Jeżeli chcesz wesprzeć Bitcoin Wallet, kody źródłowe projektu znajdują się pod adresem:
+https://code.google.com/p/bitcoin-wallet/
+
+Licencja: GPLv3
+Używanie jedynie na własne ryzyko!
+
+--
+LTC bitcoin wallet blockchain bitcoinandroid androidbitcoin Geldbörse Кошелёк mobile payment
