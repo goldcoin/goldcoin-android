@@ -30,9 +30,9 @@ block per second or less). Find a node that isn't heavily loaded to connect to.
 
 If you get a SocketDisconnectedException, the node you've connected to has its max send buffer set to low
 (unfortunately the default is too low). Connect to a node that has a bigger send buffer,
-settable by passing -maxsendbuffer=25600 to the Litecoin C++ software.
+settable by passing -maxsendbuffer=25600 to the GoldCoin C++ software.
 
-To regenerate the protobuf Java sources from src/litecoin.proto, install the protobuf compiler package version 2.4.x:
+To regenerate the protobuf Java sources from src/bitcoin.proto, install the protobuf compiler package version 2.4.x:
 
   Debian/Ubuntu: apt-get install protobuf-compiler
 
