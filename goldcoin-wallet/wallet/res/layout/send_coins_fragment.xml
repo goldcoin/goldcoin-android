@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	tools:ignore="RequiredSize" >
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="8dp"
+		android:text="@string/send_coins_fragment_receiving_address_label"
+		android:textColor="#000"
+		android:textSize="@dimen/font_size_small"
+		android:textStyle="bold" />
+
+	<AutoCompleteTextView
+		android:id="@+id/send_coins_receiving_address"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+		android:layout_marginRight="@dimen/list_entry_padding_horizontal"
+		android:completionThreshold="1"
+		android:hint="@string/send_coins_fragment_receiving_address_hint"
+		android:imeOptions="actionNext|flagNoExtractUi"
+		android:singleLine="true"
+		android:textColor="#000"
+		android:textSize="@dimen/font_size_normal" />
+
+	<LinearLayout
+		android:id="@+id/send_coins_receiving_static"
+		style="@style/My.Widget.EditText"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="12dp"
+		android:layout_marginRight="12dp"
+		android:orientation="horizontal"
+		android:visibility="gone" >
+
+		<TextView
+			android:id="@+id/send_coins_receiving_static_label"
+			android:layout_width="0px"
+			android:layout_height="wrap_content"
+			android:layout_gravity="left"
+			android:layout_weight="1"
+			android:textSize="@dimen/font_size_normal"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/send_coins_receiving_static_address"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+			android:textSize="@dimen/font_size_normal" />
+	</LinearLayout>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="8dp"
+		android:text="@string/send_coins_fragment_amount_label"
+		android:textSize="@dimen/font_size_small"
+		android:textStyle="bold" />
+
+	<de.schildbach.wallet.goldcoin.ui.CurrencyAmountView
+		android:id="@+id/send_coins_amount"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+		android:layout_marginRight="@dimen/list_entry_padding_horizontal" >
+
+		<EditText
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:imeOptions="flagNoExtractUi"
+			android:textSize="@dimen/font_size_xlarge"
+			tools:ignore="TextFields" />
+	</de.schildbach.wallet.goldcoin.ui.CurrencyAmountView>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="8dp"
+		android:text="@string/send_coins_fragment_fee_label"
+		android:textSize="@dimen/font_size_small"
+		android:textStyle="bold" />
+
+	<de.schildbach.wallet.goldcoin.ui.CurrencyAmountView
+		android:id="@+id/send_coins_fee"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/list_entry_padding_horizontal"
+		android:layout_marginRight="@dimen/list_entry_padding_horizontal" >
+
+		<EditText
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:imeOptions="flagNoExtractUi"
+			android:textSize="@dimen/font_size_xlarge"
+			tools:ignore="TextFields" />
+	</de.schildbach.wallet.goldcoin.ui.CurrencyAmountView>
+
+	<!-- stretch dummy -->
+
+	<ImageView
+		android:layout_width="0px"
+		android:layout_height="0px"
+		android:layout_weight="1" />
+
+	<ListView
+		android:id="@+id/send_coins_sent_transaction"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:visibility="gone" />
+
+	<include layout="@layout/send_coins_buttons_include" />
+
+</LinearLayout>

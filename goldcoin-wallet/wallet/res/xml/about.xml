@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+	<PreferenceCategory android:title="@string/about_title" >
+		<Preference
+			android:key="about_version"
+			android:title="Version" />
+		<Preference
+			android:summary="© 2013, GoldCoin Development Team"
+			android:title="Copyright" />
+        <Preference
+                android:summary="Version 0.6.9.3 and above"
+                android:title="GoldCoin (GLD) Compatibility" />
+		<Preference
+			android:key="about_license"
+			android:title="@string/about_license_title" />
+		<Preference
+			android:key="about_source"
+			android:title="Source Code" />
+		<Preference android:key="about_credits_goldcoinj" />
+		<Preference
+			android:key="about_credits_zxing"
+			android:title="@string/about_credits_zxing_title" />
+		<Preference
+			android:key="about_credits_icon"
+			android:title="@string/about_credits_icon_title" />
+        <Preference
+                android:key="about_credits_website"
+                android:title="@string/about_credits_website_title" />
+        <Preference
+                android:key="about_credits_forum"
+                android:title="@string/about_credits_forum_title" />
+		<!--Preference
+			android:key="about_author_twitter"
+			android:summary="\@GoldCoinInfo"
+			android:title="@string/about_author_twitter_title" /-->
+		<!--Preference
+			android:key="about_author_googleplus"
+			android:summary="+GoldCoin"
+			android:title="@string/about_author_googleplus_title" /-->
+		<!--Preference
+			android:key="about_market_app"
+			android:title="@string/about_credits_market_app_title" /-->
+		<!--Preference
+			android:key="about_market_publisher"
+			android:title="@string/about_credits_market_publisher_title" /-->
+	</PreferenceCategory>
+
+</PreferenceScreen>

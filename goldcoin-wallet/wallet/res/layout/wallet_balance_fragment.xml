@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/My.Widget.Button.Borderless"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:gravity="center"
+	android:orientation="vertical" >
+
+	<de.schildbach.wallet.goldcoin.ui.CurrencyTextView
+		android:id="@+id/wallet_balance"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/font_size_huge" />
+
+	<de.schildbach.wallet.goldcoin.ui.CurrencyTextView
+		android:id="@+id/wallet_balance_local"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="12dp"
+		android:textSize="@dimen/font_size_small" />
+
+</LinearLayout>

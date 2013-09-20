@@ -1,0 +1,169 @@
+KNOWN ISSUES
+
+When run for the first time, the block chain needs to be downloaded. For prodnet, this currently
+takes around 1-2 hours on a decent WLAN.
+
+
+FILES
+
+Your wallet and your private keys are stored in app internal storage:
+
+/data/data/de.schildbach.wallet/files/wallet-protobuf (MODE_PRIVATE)
+	Wallet for prodnet
+
+/data/data/de.schildbach.wallet_test/files/wallet-protobuf-testnet (MODE_WORLD_READABLE | MODE_WORLD_WRITEABLE)
+	Wallet for testnet
+
+The wallet file format is not compatible to wallet.dat (Satoshi client). Rather, it uses a custom protobuf format
+which should be compatible between clients using litecoinj.
+
+Certain actions cause rolling backups of your private keys to app internal storage:
+
+/data/data/de.schildbach.wallet/files/key-backup-base58 (MODE_PRIVATE)
+	Backups of private keys for prodnet
+
+/data/data/de.schildbach.wallet_test/files/key-backup-base58-testnet (MODE_PRIVATE)
+	Backups of private keys for testnet
+
+Private keys can be exported to and imported from external storage:
+
+/sdcard/Download/litecoin-wallet-keys-<yyyy-MM-dd>
+	Export of private keys for prodnet
+
+/sdcard/Download/litecoin-wallet-keys-testnet-<yyyy-MM-dd>
+	Export of private keys for testnet
+
+The export file is encrypted using your chosen password. You can OpenSSL to decrypt:
+
+openssl enc -d -aes-256-cbc -a -in <filename>
+
+
+DEBUGGING
+
+Wallet file for testnet can be pulled from (even unrooted) device using
+
+	adb pull /data/data/de.schildbach.wallet_test/files/wallet-protobuf-testnet
+
+Log messages can be viewed by
+
+	adb logcat
+
+
+BUILDING
+
+You can probably skip some steps, especially if you built Android apps before.
+
+You'll need git, a Java SDK 5 (or later) and at least Maven 3 for this. If you're using Ubuntu,
+use
+
+	sudo apt-get install git maven openjdk-6-jdk
+
+Get the Android SDK Tools from
+
+	http://developer.android.com/sdk/
+
+and unpack it to your workspace directory. Switch to that Android SDK directory, and use
+
+	tools/android update sdk --no-ui --force --filter platform,platform-tools
+
+to download the necessary API level.
+
+Next, you need to build litecoinj. In your workspace, use
+
+	git clone -b release-0.7 https://code.google.com/p/litecoinj/ litecoinj
+	cd litecoinj
+	mvn clean install
+
+Finally, you can build Litecoin Wallet and sign it with your development key. Again in your workspace,
+use
+
+	git clone https://code.google.com/p/litecoin-wallet/ litecoin-wallet
+	cd litecoin-wallet
+	mvn clean install -Dandroid.sdk.path=<path to your android sdk>
+
+To upload the app to your Android device, use
+
+	sudo apt-get install android-tools-adb
+	cd wallet
+	adb install wallet/target/wallet_test-*.apk
+
+
+SETTING UP FOR DEVELOPMENT
+
+Make sure you've got Eclipse 3.7 (Indigo) with ADT 20 installed.
+
+Use Git to check out the project to your workspace:
+
+  git clone https://code.google.com/p/litecoin-wallet/ litecoin-wallet
+
+Change to that directory.
+
+Use the maven-eclipse-plugin to create Eclipse project files:
+
+  mvn eclipse:eclipse
+
+Optional: In the generated .classpath, remove the org.eclipse.jdt.launching.JRE_CONTAINER
+classpath entry. It does not belong there, but cannot be excluded from being generated currently.
+
+In Eclipse, use File -> Import -> General -> Existing Project into Workspace to import project.
+
+If you see loads of "should be tagged with @Override" errors, set
+
+  Project -> Properties -> Java Compiler -> Errors/Warnings -> Annotations ->
+  Missing @Override annotation to 'Warning'
+
+
+NFC (Near field communication)
+
+Litecoin Wallet supports reading Litecoin requests via NFC, either from a passive NFC tag or from
+another NFC capable Android device that is requesting coins.
+
+For this to work, just enable NFC in your phone and hold your phone to the tag or device (with
+the "Request coins" dialog open). The "Send coins" dialog will open with fields populated.
+
+Instructions for preparing an NFC tag with your address:
+
+- We have successfully tested this NFC tag writer:
+  https://play.google.com/store/apps/details?id=com.nxp.nfc.tagwriter
+  Other writers should work as well, let us know if you succeed.
+
+- Some tags have less than 50 bytes capacity, those won't work. 1 KB tags recommended.
+
+- The tag needs to contain a Litecoin URI. You can construct one with the "Request coins" dialog,
+  then share with messaging or email. You can also construct the URI manually. Example for Prodnet:
+  litecoin:1G2Y2jP5YFZ5RGk2PXaeWwbeA5y1ZtFhoL
+
+- The type of the message needs to be URI or URL (not Text).
+
+- If you put your tag at a public place, don't forget to enable write protect. Otherwise, someone
+  could overwrite the tag with his own Litecoin address.
+
+
+EXCHANGE RATES
+
+Litecoin Wallet reads this feed from "litecoin charts" for getting exchange rates:
+
+	http://litecoincharts.com/t/weighted_prices.json
+
+The feed is described on this page (see Weighted Prices):
+
+	http://litecoincharts.com/about/markets-api/
+
+I chose this feed because it is not dependent on a single exchange. However, you should keep in
+mind it's always a 24h average (falling back to 7d or even 30d if no trade occurred for a long
+time).
+
+If Litecoincharts is not available, the feed from "Blockchain" is fetched instead:
+
+	https://blockchain.info/ticker
+
+The feed is described here:
+
+	https://blockchain.info/api/exchange_rates_api
+
+
+LITECOINJ
+
+Litecoin Wallet uses litecoinj for Litecoin specific logic:
+
+http://code.google.com/p/litecoinj/

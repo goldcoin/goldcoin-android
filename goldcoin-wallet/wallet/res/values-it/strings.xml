@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+	<string name="toast_wallet_reset">Il portafoglio è stato reinizializzato,\noccorrerà del tempo per ripristinarlo</string>
+
+	<string name="blockchain_state_disclaimer">Usatela a vostro rischio e pericolo. Leggete i dettagli nelle &lt;u>note di sicurezza&lt;/u>.</string>
+	<string name="wallet_address_fragment_your">Il tuo indirizzo GoldCoin:</string>
+	<string name="wallet_address_fragment_clipboard_msg">Indirizzo GoldCoin copiato nella clipboard</string>
+	<string name="wallet_addresses_fragment_add_dialog_title">Aggiungi un indirizzo GoldCoin</string>
+	<string name="wallet_addresses_fragment_add_dialog_message">Gli indirizzi GoldCoin non possono essere cancellati. Ne vuoi aggiungere uno nuovo?</string>
+	<string name="exchange_rates_fragment_empty_text">Impossibile acquisire quotazioni di cambio</string>
+	<string name="wallet_transactions_fragment_tab_received">Ricevuto</string>
+	<string name="wallet_transactions_fragment_tab_all">Entrambi</string>
+	<string name="wallet_transactions_fragment_tab_sent">Inviato</string>
+	<string name="wallet_transactions_fragment_empty_text_received">Nessun GoldCoin ancora ricevuto</string>
+	<string name="wallet_transactions_fragment_empty_text_sent">Nessun GoldCoin ancora inviato</string>
+	<string name="wallet_options_safety">Note di sicurezza</string>
+	<string name="wallet_options_donate">Donazioni</string>
+	<string name="wallet_low_storage_dialog_title">Spazio di memorizzazione interno quasi esaurito!</string>
+	<string name="wallet_low_storage_dialog_msg">GoldCoin Wallet usa la memoria interna al dispositivo per memorizzare transazioni e blocchi.
+		Se lo spazio si esaurisce smetterà di funzionerà ed i tuoi GoldCoins potrebbero essere a rischio!\n\n
+		Vuoi aprire il gestore applicazioni per disinstallare applicazioni di cui potresti non aver bisogno?
+	</string>
+	<string name="wallet_low_storage_dialog_button_apps">Gestisci applicazioni</string>
+
+	<string name="send_coins_activity_title">Invia GoldCoins</string>
+	<string name="send_coins_fragment_receiving_address_label">Paga a</string>
+	<string name="send_coins_fragment_receiving_address_hint">inserisci indirizzo o nome</string>
+	<string name="send_coins_fragment_receiving_address_error">Indirizzo GoldCoin invalido!</string>
+	<string name="send_coins_fragment_available_label">Disponibili</string>
+	<string name="send_coins_fragment_pending">(%s GLD in attesa di conferma)</string>
+	<string name="send_coins_fragment_amount_label">Importo da pagare</string>
+	<string name="send_coins_fragment_fee_label">Commissione</string>
+	<string name="send_coins_fragment_button_send">Invia</string>
+	<string name="send_coins_sending_msg">Invio in corso…</string>
+	<string name="send_coins_add_address_dialog_title">Il destinatario non è ancora presente in rubrica.\n\nVuoi aggiungerlo?</string>
+	<string name="send_coins_add_address_dialog_button_add">Aggiungi indirizzo</string>
+	<string name="send_coins_error_msg">"Problemi durante l'invio dei GoldCoins!"</string>
+
+	<string name="request_coins_activity_title">Richiedi GoldCoins</string>
+	<string name="request_coins_fragment_amount_label">Importo richiesto (opzionale)</string>
+	<string name="request_coins_fragment_qr_label">Fai rilevare questo codice QR al mittente:</string>
+	<string name="request_coins_fragment_nfc_enabled">Oppure tocca con un dispositivo NFC.</string>
+	<string name="request_coins_clipboard_msg">Richiesta GoldCoin copiata negli appunti</string>
+	<string name="request_coins_share_dialog_title">Condividi richiesta di GoldCoins…</string>
+
+	<string name="address_book_activity_title">Rubrica</string>
+	<string name="address_book_empty_text">Nessun indirizzo in rubrica</string>
+	<string name="address_book_context_send_title">"Invia GoldCoins all'indirizzo"</string>
+	<string name="address_book_context_edit_title">Modifica indirizzo</string>
+	<string name="address_book_context_remove_title">Rimuovi indirizzo</string>
+	<string name="address_book_context_show_qr_title">Mostra codice QR</string>
+	<string name="address_book_context_copy_to_clipboard_title">Copia negli appunti</string>
+
+	<string name="edit_address_book_entry_dialog_title_add">Aggiungi indirizzo</string>
+	<string name="edit_address_book_entry_dialog_title_edit">Modifica indirizzo</string>
+	<string name="edit_address_book_entry_dialog_address_label">Indirizzo</string>
+	<string name="edit_address_book_entry_dialog_label_label">Nome</string>
+	<string name="edit_address_book_entry_dialog_button_edit">Salva</string>
+
+	<string name="about_title">Informazioni</string>
+	<string name="about_license_title">Licenza</string>
+	<string name="about_credits_goldcoinj_title">Questa applicazione fa uso di goldcoinj %s</string>
+	<string name="about_credits_zxing_title">"Questa applicazione fa uso di 'zxing'"</string>
+	<string name="about_credits_icon_title">"Questa applicazione fa uso di una icona di 'Sting17'"</string>
+	<string name="about_author_twitter_title">"L'autore su Twitter"</string>
+	<string name="about_author_googleplus_title">"L'autore su Google+"</string>
+	<string name="about_credits_market_app_title">"Pagina dell'Google Play"</string>
+	<string name="about_credits_market_publisher_title">"Altre applicazioni dell'autore"</string>
+
+	<string name="notification_coins_received_msg">Ricevuti %s GLD</string>
+	<string name="notification_peers_connected_msg">Connesso a %d peers</string>
+
+	<!-- generic buttons -->
+	<string name="button_dismiss">Chiudi</string>
+	<string name="button_cancel">Annulla</string>
+	<string name="button_help">Aiuto</string>
+	<string name="button_add">Aggiungi</string>
+	<string name="button_delete">Cancella</string>
+	<string name="button_share">Condividi</string>
+	<string name="button_request_coins">Richiedi GoldCoins</string>
+	<string name="button_send_coins">Invia GoldCoins</string>
+
+</resources>
