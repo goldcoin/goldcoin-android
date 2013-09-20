@@ -10,10 +10,10 @@ Now try running one of the example apps:
   cd examples
   mvn exec:java -Dexec.mainClass=com.google.litecoin.examples.PingService
 
-It will download the block chain and eventually print a Litecoin address. If you send coins to it,
+It will download the block chain and eventually print a GoldCoin address. If you send coins to it,
 you should get them back a few minutes later when a block is solved.
 
-You can also use a command line tool that exposes basic Litecoin operations
+You can also use a command line tool that exposes basic GoldCoin operations
 
 On UNIX:
   cd tools
@@ -30,7 +30,7 @@ block per second or less). Find a node that isn't heavily loaded to connect to.
 
 If you get a SocketDisconnectedException, the node you've connected to has its max send buffer set to low
 (unfortunately the default is too low). Connect to a node that has a bigger send buffer,
-settable by passing -maxsendbuffer=25600 to the Litecoin C++ software.
+settable by passing -maxsendbuffer=25600 to the GoldCoin C++ software.
 
 To regenerate the protobuf Java sources from src/litecoin.proto, install the protobuf compiler package version 2.4.x:
 
