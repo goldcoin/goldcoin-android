@@ -217,6 +217,7 @@ public class NetworkParameters implements Serializable {
             checkpoints.put( 60000, new Sha256Hash("f03feaab75843a39be8cf0fbf8bdae3056aebd4817b89a99e4837db2bdd2659a"));
             checkpoints.put( 65000, new Sha256Hash("b635ce68527e8b777f68a71fe441faab285fa7aafd78259ddc24843539bba369"));
             checkpoints.put( 66000, new Sha256Hash("f619fc8b01c1aedcf4623cea7d85310db85174e27e1b3069dadf76e9bc2f6c99"));
+            checkpoints.put(103000, new Sha256Hash("e41285ba8cd299b28f0dbfc60b28a9c3e5b6482079d4608ef0dad14390ce6da7"));
 
         } else if (type == 3) {
             //TODO::This code is not set up correctly for a goldcoin testnet

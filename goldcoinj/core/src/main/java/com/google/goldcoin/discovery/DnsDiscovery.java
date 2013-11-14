@@ -53,7 +53,8 @@ public class DnsDiscovery implements PeerDiscovery {
 
     //TODO::update for GoldCoin
     public static final String[] defaultHosts = new String[]{
-            "seed.gldcoin.com",
+            "seed.gldcoin.com"
+
     };
 
     /**

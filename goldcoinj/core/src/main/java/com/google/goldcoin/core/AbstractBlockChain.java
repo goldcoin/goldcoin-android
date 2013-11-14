@@ -16,14 +16,15 @@
 
 package com.google.goldcoin.core;
 
+import com.google.common.base.Preconditions;
 import com.google.goldcoin.store.BlockStore;
 import com.google.goldcoin.store.BlockStoreException;
 import com.google.goldcoin.utils.Locks;
-import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
+import java.lang.*;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
@@ -708,6 +709,13 @@ public abstract class AbstractBlockChain {
     // February 16th 2012
     private static Date testnetDiffDate = new Date(1329264000000L);
 
+    /*protected class comp64 implements Comparator<int> {
+        @Override
+        public int compare(int a, int b) {
+            return a > b ? 1 : 0;
+        }
+    } */
+
     /**
      * Throws an exception if the blocks difficulty is not correct.
      */
@@ -719,9 +727,12 @@ public abstract class AbstractBlockChain {
 		// We need to get the right interval.
         int height = storedPrev.getHeight() + 1;
         int interval =  params.getInterval(height);
-        if (((height %  interval) != 0) && (height != GoldcoinDefinition.newDifficultyProtocolFork)) {
 
-            // TODO: Refactor this hack after 0.5 is released and we stop supporting deserialization compatibility. This will not work for gldcoin
+        //if (height > 102999) throw new VerificationException("stop at 102,999");
+
+        if (((height %  interval) != 0) && (height != GoldcoinDefinition.newDifficultyProtocolFork) /*&& (height != GoldcoinDefinition.novemberFork)*/) {
+
+            // TODO: Refactor this hack after 0.5 is released and we stop supporting deserialization compatibility. This will not work for goldcoin
             // This should be a method of the NetworkParameters, which should in turn be using singletons and a subclass
             // for each network type. Then each network can define its own difficulty transition rules.
             if (params.getId().equals(NetworkParameters.ID_TESTNET) && nextBlock.getTime().after(testnetDiffDate)) {
@@ -741,6 +752,11 @@ public abstract class AbstractBlockChain {
         // two weeks after the initial block chain download.
         long now = System.currentTimeMillis();
         StoredBlock cursor = blockStore.get(prev.getHash());
+
+        int [] last59blocktimes = new int [59];
+        long lastBlockTime = 0;
+        long thisBlockTime = 0;
+
 		//More changes for GoldCoin to handle the different intervals
 		//This part will use the interval based on the block height retrieved above.
         int goBack = /*params.*/interval - 1;
@@ -753,7 +769,17 @@ public abstract class AbstractBlockChain {
                 throw new VerificationException(
                         "Difficulty transition point but we did not find a way back to the genesis block.");
             }
+            thisBlockTime = cursor.getHeader().getTimeSeconds();
             cursor = blockStore.get(cursor.getHeader().getPrevBlockHash());
+
+            if(GoldcoinDefinition.usingMedianDifficultyProtocol(height))
+            {
+                if(i > 0)
+                {
+                    last59blocktimes[i-1] = (int)Math.abs(thisBlockTime - lastBlockTime);
+                }
+                lastBlockTime = thisBlockTime;
+            }
         }
         long elapsed = System.currentTimeMillis() - now;
         if (elapsed > 50)
@@ -764,6 +790,13 @@ public abstract class AbstractBlockChain {
         //TODO::This code is also not working for gldcoin, i don't think
         Block blockIntervalAgo = cursor.getHeader();
         int timespan = (int) (prev.getTimeSeconds() - blockIntervalAgo.getTimeSeconds());
+
+        if(GoldcoinDefinition.usingMedianDifficultyProtocol(height))
+        {
+            Arrays.sort(last59blocktimes);
+            timespan = Math.abs(last59blocktimes[29])*60;
+
+        }
         // Limit the adjustment step.
         /* old version here
         if (timespan < params.targetTimespan / 4)
@@ -911,4 +944,6 @@ public abstract class AbstractBlockChain {
             return new Date(estimated);
         }
     }
-}
+
+
+    }

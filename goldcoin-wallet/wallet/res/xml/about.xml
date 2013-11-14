@@ -9,7 +9,7 @@
 			android:summary="© 2013, GoldCoin Development Team"
 			android:title="Copyright" />
         <Preference
-                android:summary="Version 0.6.9.3 and above"
+                android:summary="Version 0.7.1.4 and above"
                 android:title="GoldCoin (GLD) Compatibility" />
 		<Preference
 			android:key="about_license"
@@ -38,9 +38,9 @@
 			android:key="about_author_googleplus"
 			android:summary="+GoldCoin"
 			android:title="@string/about_author_googleplus_title" /-->
-		<!--Preference
+		<Preference
 			android:key="about_market_app"
-			android:title="@string/about_credits_market_app_title" /-->
+			android:title="@string/about_credits_market_app_title" />
 		<!--Preference
 			android:key="about_market_publisher"
 			android:title="@string/about_credits_market_publisher_title" /-->

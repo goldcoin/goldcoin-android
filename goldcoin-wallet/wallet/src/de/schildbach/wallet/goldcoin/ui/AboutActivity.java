@@ -69,7 +69,7 @@ public final class AboutActivity extends SherlockPreferenceActivity
 		//findPreference(KEY_ABOUT_CREDITS_ICON).setSummary(Constants.CREDITS_ICON_URL);
         findPreference(KEY_ABOUT_CREDITS_WEBSITE).setSummary(Constants.CREDITS_WEBSITE_URL);
         findPreference(KEY_ABOUT_CREDITS_FORUM).setSummary(Constants.CREDITS_FORUM_URL);
-		//findPreference(KEY_ABOUT_MARKET_APP).setSummary(String.format(Constants.MARKET_APP_URL, getPackageName()));
+		findPreference(KEY_ABOUT_MARKET_APP).setSummary(String.format(Constants.MARKET_APP_URL, getPackageName()));
 		//findPreference(KEY_ABOUT_MARKET_PUBLISHER).setSummary(Constants.MARKET_PUBLISHER_URL);
 	}
 
@@ -136,7 +136,7 @@ public final class AboutActivity extends SherlockPreferenceActivity
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.AUTHOR_GOOGLEPLUS_URL)));
 			finish();
 		} */
-		/*else if (KEY_ABOUT_MARKET_APP.equals(key))
+		else if (KEY_ABOUT_MARKET_APP.equals(key))
 		{
 			final Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(Constants.MARKET_APP_URL, getPackageName())));
 			if (getPackageManager().resolveActivity(marketIntent, 0) != null)
@@ -144,7 +144,7 @@ public final class AboutActivity extends SherlockPreferenceActivity
 			else
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(Constants.WEBMARKET_APP_URL, getPackageName()))));
 			finish();
-		} */
+		}
 //		else if (KEY_ABOUT_MARKET_PUBLISHER.equals(key))
 //		{
 //			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MARKET_PUBLISHER_URL)));

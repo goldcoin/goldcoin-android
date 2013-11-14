@@ -23,7 +23,7 @@ public class Pong extends Message {
     /**
      * The smallest protocol version that supports the pong response (BIP 31). Anything beyond version 60000.
      */
-    public static final int MIN_PROTOCOL_VERSION = 60001;
+    public static final int MIN_PROTOCOL_VERSION = GoldcoinDefinition.MIN_PROTOCOL_VERSION;
 
     private long nonce;
 

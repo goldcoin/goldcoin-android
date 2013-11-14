@@ -416,7 +416,7 @@ public class Peer {
                         log.info("Lost download peer status, throwing away downloaded headers.");
                         return;
                     }
-                    if (blockChain.add(header)) {
+                    if (GoldcoinDefinition.Defense(this, header) && blockChain.add(header)) {
                         // The block was successfully linked into the chain. Notify the user of our progress.
                         invokeOnBlocksDownloaded(header);
                     } else {
@@ -702,7 +702,8 @@ public class Peer {
         pendingBlockDownloads.remove(m.getHash());
         try {
             // Otherwise it's a block sent to us because the peer thought we needed it, so add it to the block chain.
-            if (blockChain.add(m)) {
+            log.info("processBlock {}: Received block from : {}", vAddress, m.getHashAsString());
+            if (GoldcoinDefinition.Defense(this, m) && blockChain.add(m)) {
                 // The block was successfully linked into the chain. Notify the user of our progress.
                 invokeOnBlocksDownloaded(m);
             } else {

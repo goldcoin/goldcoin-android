@@ -99,7 +99,7 @@ public class Constants
 	public static final int GLD_PRECISION = 8;
 	public static final int LOCAL_PRECISION = 8;
 
-	public static final String DONATION_ADDRESS = "DztaVPtUd2M5TwfifBUaq5bLrAscYeMbyd";
+	public static final String DONATION_ADDRESS = "E2CCdrwZGcdav2paJ2DwvoEPg96zY71epr";
 	public static final String REPORT_EMAIL = "app@gldcoin.com";
 	public static final String REPORT_SUBJECT_ISSUE = "Reported issue";
 	public static final String REPORT_SUBJECT_CRASH = "Crash report";
