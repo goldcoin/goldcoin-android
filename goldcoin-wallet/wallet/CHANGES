@@ -1,3 +1,18 @@
+
+v1.09
+* added 117000 fork changes to difficulty calculation
+* added SeedPeers to allow faster connection to the network
+
+v1.08
+* added 103000 fork changes to difficulty calculation
+
+v1.07
+*
+
+v1.00
+* First Beta Version
+
+=========================
 2.48
 
 * fix race condition when replaying blockchain

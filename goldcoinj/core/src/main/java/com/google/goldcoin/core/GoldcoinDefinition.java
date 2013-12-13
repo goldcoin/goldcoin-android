@@ -50,7 +50,7 @@ public class GoldcoinDefinition {
 
     public static final BigInteger DEFAULT_MIN_TX_FEE = BigInteger.valueOf(10000000);
 
-    public static final int PROTOCOL_VERSION = 60011;
+    public static final int PROTOCOL_VERSION = 60014;
     public static final int MIN_PROTOCOL_VERSION = 60005;
     public static final int Port    = 8121;
     public static final int TestPort = 18121;
@@ -63,8 +63,13 @@ public class GoldcoinDefinition {
 
     public static final boolean usingMedianDifficultyProtocol(int height)
     { return height >= novemberFork;}
+
+    public static final boolean usingMedianDifficultyProtocol2(int height)
+    { return height > novemberFork2;}
+
     public static final long julyFork = 45000;
     public static final long novemberFork = 103000;
+    public static final long novemberFork2 = 118800;
     public static boolean hardForkedJuly = false;
     public static final int GetBlockReward(int nHeight)
     {

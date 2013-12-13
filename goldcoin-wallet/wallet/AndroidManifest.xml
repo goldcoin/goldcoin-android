@@ -3,8 +3,8 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	package="de.schildbach.wallet.goldcoin"
 	android:installLocation="preferExternal"
-	android:versionCode="10080"
-	android:versionName="1.08" >
+	android:versionCode="10100"
+	android:versionName="1.10" >
 
 	<uses-sdk
 		android:minSdkVersion="8"

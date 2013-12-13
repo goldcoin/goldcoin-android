@@ -11,4 +11,4 @@ Development was done with IntelliJ IDEA 12.1.4.  Open the goldcoinj project to o
 
 This file system also contains the maven files.  If used, they may not build correctly.
 
-This app is compatible with the GoldCoin client versions 0.6.9.3 and above.
+This app is compatible with the GoldCoin client versions 0.7.1.4 and above.

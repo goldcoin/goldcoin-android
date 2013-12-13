@@ -66,11 +66,24 @@ public class SeedPeers implements PeerDiscovery {
             throw new PeerDiscoveryException(e);
         }
     }
-
+    public InetSocketAddress[] getPeers2(long timeoutValue, TimeUnit timeoutUnit) throws PeerDiscoveryException {
+        try {
+            return allPeers2();
+        } catch (UnknownHostException e) {
+            throw new PeerDiscoveryException(e);
+        }
+    }
     private InetSocketAddress[] allPeers() throws UnknownHostException {
         InetSocketAddress[] addresses = new InetSocketAddress[seedAddrs.length];
         for (int i = 0; i < seedAddrs.length; ++i) {
             addresses[i] = new InetSocketAddress(convertAddress(seedAddrs[i]), params.port);
+        }
+        return addresses;
+    }
+    private InetSocketAddress[] allPeers2() throws UnknownHostException {
+        InetSocketAddress[] addresses = new InetSocketAddress[seedAddrs2.length];
+        for (int i = 0; i < seedAddrs2.length; ++i) {
+            addresses[i] = new InetSocketAddress(seedAddrs2[i], params.port);
         }
         return addresses;
     }
@@ -87,6 +100,16 @@ public class SeedPeers implements PeerDiscovery {
     public static int[] seedAddrs =
             {
                     //0x2EFDCB71, 0xCC1B3AD6, 0xADA77149,
+            };
+    public static String[] seedAddrs2 =
+            {
+                    "216.232.230.91",
+                    "84.74.106.242",
+            "82.30.110.220",
+            "95.96.252.18",
+            "67.253.99.90",
+            "82.227.217.20",
+            "93.136.92.72"
             };
 
     public void shutdown() {

@@ -58,10 +58,7 @@ import android.util.Log;
 import com.google.goldcoin.core.*;
 import com.google.goldcoin.core.TransactionConfidence.ConfidenceType;
 import com.google.goldcoin.core.Wallet.BalanceType;
-import com.google.goldcoin.discovery.DnsDiscovery;
-import com.google.goldcoin.discovery.IrcDiscovery;
-import com.google.goldcoin.discovery.PeerDiscovery;
-import com.google.goldcoin.discovery.PeerDiscoveryException;
+import com.google.goldcoin.discovery.*;
 import com.google.goldcoin.store.BlockStore;
 import com.google.goldcoin.store.BlockStoreException;
 
@@ -371,8 +368,8 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
                 try {
 				    peerGroup.addWallet(wallet);
                 } catch(NoSuchMethodError e) {
-                    Log.e("Litecoin", "There's no method: " + e.getLocalizedMessage());
-                    Log.e("Litecoin", "Litecoinj issue.  We're going to ignore this for now and just try and return nicely.");
+                    Log.e("GoldCoin", "There's no method: " + e.getLocalizedMessage());
+                    Log.e("GoldCoin", "GoldCoinJ issue.  We're going to ignore this for now and just try and return nicely.");
                     return;
                 }
 				peerGroup.setUserAgent(Constants.USER_AGENT, application.applicationVersionName());
@@ -380,7 +377,7 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 
 				final int maxConnectedPeers = application.maxConnectedPeers();
 
-				final String trustedPeerHost = prefs.getString(Constants.PREFS_KEY_TRUSTED_PEER, "").trim();
+				final String trustedPeerHost = /*"86.26.65.26";*/ prefs.getString(Constants.PREFS_KEY_TRUSTED_PEER, "").trim();
 				final boolean hasTrustedPeer = trustedPeerHost.length() > 0;
 
 				final boolean connectTrustedPeerOnly = hasTrustedPeer && prefs.getBoolean(Constants.PREFS_KEY_TRUSTED_PEER_ONLY, false);
@@ -408,7 +405,13 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 						}
 
 						if (!connectTrustedPeerOnly)
+                        {
 							peers.addAll(Arrays.asList(normalPeerDiscovery.getPeers(timeoutValue, timeoutUnit)));
+
+                            SeedPeers seedPeers = new SeedPeers(Constants.NETWORK_PARAMETERS);
+
+                            peers.addAll(Arrays.asList(seedPeers.getPeers2(timeoutValue, timeoutUnit)));
+                        }
 
 						// workaround because PeerGroup will shuffle peers
 						if (needsTrimPeersWorkaround)

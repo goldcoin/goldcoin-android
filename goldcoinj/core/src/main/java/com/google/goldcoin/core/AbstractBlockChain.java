@@ -753,7 +753,8 @@ public abstract class AbstractBlockChain {
         long now = System.currentTimeMillis();
         StoredBlock cursor = blockStore.get(prev.getHash());
 
-        int [] last59blocktimes = new int [59];
+        int [] last59BlockSolvingTimes = new int [59];
+        long [] last60BlockTimes = new long [60];
         long lastBlockTime = 0;
         long thisBlockTime = 0;
 
@@ -769,17 +770,20 @@ public abstract class AbstractBlockChain {
                 throw new VerificationException(
                         "Difficulty transition point but we did not find a way back to the genesis block.");
             }
-            thisBlockTime = cursor.getHeader().getTimeSeconds();
-            cursor = blockStore.get(cursor.getHeader().getPrevBlockHash());
+
+
 
             if(GoldcoinDefinition.usingMedianDifficultyProtocol(height))
             {
+                thisBlockTime = cursor.getHeader().getTimeSeconds();
+                last60BlockTimes[i] = thisBlockTime;
                 if(i > 0)
                 {
-                    last59blocktimes[i-1] = (int)Math.abs(thisBlockTime - lastBlockTime);
+                    last59BlockSolvingTimes[i-1] = (int)Math.abs(thisBlockTime - lastBlockTime);
                 }
                 lastBlockTime = thisBlockTime;
             }
+            cursor = blockStore.get(cursor.getHeader().getPrevBlockHash());
         }
         long elapsed = System.currentTimeMillis() - now;
         if (elapsed > 50)
@@ -793,8 +797,33 @@ public abstract class AbstractBlockChain {
 
         if(GoldcoinDefinition.usingMedianDifficultyProtocol(height))
         {
-            Arrays.sort(last59blocktimes);
-            timespan = Math.abs(last59blocktimes[29])*60;
+            Arrays.sort(last59BlockSolvingTimes);
+            timespan = Math.abs(last59BlockSolvingTimes[29])*60;
+
+            if(GoldcoinDefinition.usingMedianDifficultyProtocol2(height)) {
+                if((last59BlockSolvingTimes[29]) >= 120) {
+                    //Check to see whether we are in a deadlock situation with the 51% defense system
+
+                    int numTooClose = 0;
+                    int index = 1;
+                    while(index != 55) {
+                        if(Math.abs(last60BlockTimes[last60BlockTimes.length-index] - last60BlockTimes[last60BlockTimes.length-(index+5)]) == 600) {
+                            numTooClose++;
+                        }
+                        index++;
+                    }
+
+                    if(numTooClose > 0) {
+                        //We found 6 blocks that were solved in exactly 10 minutes
+                        //Averaging 1.66 minutes per block
+
+
+                        timespan = 110 * 60;
+                    }
+
+
+                }
+            }
 
         }
         // Limit the adjustment step.

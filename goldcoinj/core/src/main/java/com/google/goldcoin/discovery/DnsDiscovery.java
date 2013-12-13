@@ -53,9 +53,9 @@ public class DnsDiscovery implements PeerDiscovery {
 
     //TODO::update for GoldCoin
     public static final String[] defaultHosts = new String[]{
-            "seed.gldcoin.com"
-
-    };
+            "seed.gldcoin.com",   // "50.116.22.43" currently points to cryptocoinexplorer2.com
+            //"vps.gldcoin.com",
+     };
 
     /**
      * Supports finding peers through DNS A records. Community run DNS entry points will be used.
