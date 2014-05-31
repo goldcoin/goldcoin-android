@@ -22,7 +22,7 @@ import static com.google.common.base.Preconditions.checkState;
 public class BuildCheckpoints {
     public static void main(String[] args) throws Exception {
         BriefLogFormatter.init();
-        final NetworkParameters params = NetworkParameters.prodNetHank();
+        final NetworkParameters params = NetworkParameters.prodNet();
 
         // Sorted map of UNIX time of block to StoredBlock object.
         final TreeMap<Integer, StoredBlock> checkpoints = new TreeMap<Integer, StoredBlock>();
@@ -36,7 +36,7 @@ public class BuildCheckpoints {
         long now = new Date().getTime() / 1000;
         peerGroup.setFastCatchupTimeSecs(now);
 
-        final long newest_limit = now - (86400 * 2);
+        final long newest_limit = now - (86400 * 21);
 
         chain.addListener(new AbstractBlockChainListener() {
             @Override
