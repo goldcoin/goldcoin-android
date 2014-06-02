@@ -767,8 +767,10 @@ public abstract class AbstractBlockChain {
         for (int i = 0; i < goBack; i++) {
             if (cursor == null) {
                 // This should never happen. If it does, it means we are following an incorrect or busted chain.
-                throw new VerificationException(
-                        "Difficulty transition point but we did not find a way back to the genesis block.");
+                //we are loading from the checkpoints file
+                return;
+                //throw new VerificationException(
+                //        "Difficulty transition point but we did not find a way back to the genesis block.");
             }
 
 

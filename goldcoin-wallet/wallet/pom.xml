@@ -6,7 +6,7 @@
 
 	<artifactId>wallet</artifactId>
 	<packaging>apk</packaging>
-	<version>1.09</version>
+	<version>1.12</version>
 	<name>GoldCoin Wallet</name>
 
 	<parent>
