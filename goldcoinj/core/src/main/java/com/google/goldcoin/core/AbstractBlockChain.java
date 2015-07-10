@@ -796,6 +796,87 @@ public abstract class AbstractBlockChain {
         //TODO::This code is also not working for gldcoin, i don't think
         Block blockIntervalAgo = cursor.getHeader();
         int timespan = (int) (prev.getTimeSeconds() - blockIntervalAgo.getTimeSeconds());
+        int medTime = 0;
+
+        if(GoldcoinDefinition.usingMedianDifficultyProtocol(height)) {
+            Arrays.sort(last59BlockSolvingTimes);
+            medTime = last59BlockSolvingTimes[29];
+        }
+
+
+        if(height > GoldcoinDefinition.mayFork) {
+            //Difficulty Fix here for case where average time between blocks becomes far longer than 2 minutes, even though median time is close to 2 minutes.
+            //Uses the last 120 blocks(Should be 4 hours) for calculating
+
+            log.info("May Fork mode \n");
+
+            long [] last120BlockTimes = new long[120];
+            System.arraycopy(last60BlockTimes, 0, last120BlockTimes, 0, 60);
+            goBack = 120;
+            for (int i = 60; i < goBack; i++) {
+                if (cursor == null) {
+                    // This should never happen. If it does, it means we are following an incorrect or busted chain.
+                    //we are loading from the checkpoints file
+                    return;
+                    //throw new VerificationException(
+                    //        "Difficulty transition point but we did not find a way back to the genesis block.");
+                }
+                last120BlockTimes[i] = cursor.getHeader().getTimeSeconds();
+                cursor = blockStore.get(cursor.getHeader().getPrevBlockHash());
+            }
+
+
+
+
+            // Limit adjustment step
+            //We need to set this in a way that reflects how fast blocks are actually being solved..
+            //First we find the last 120 blocks and take the time between blocks
+            //That gives us a list of 119 time differences
+            //Then we take the average of those times and multiply it by 60 to get our actualtimespan
+
+            int [] last119TimeDifferences = new int [119];
+            //std::vector<int64> last119TimeDifferences;
+
+            int xy = 0;
+            System.arraycopy(last59BlockSolvingTimes, 0, last119TimeDifferences, 0, last59BlockSolvingTimes.length);
+            for(xy = 59; xy < 119; ++xy)
+            {
+
+                last119TimeDifferences[xy] = (int)(Math.abs(last120BlockTimes[xy] - last120BlockTimes[xy+1]));
+                //xy++;
+            }
+
+            long total = 0;
+            for(int x = 0; x < 119; x++) {
+                long timeN = last119TimeDifferences[x];
+                //printf(" GetNextWorkRequired(): Current Time difference is: %"PRI64d" \n",timeN);
+                total += timeN;
+            }
+
+            long averageTime = total/119;
+
+
+            log.info("Average time between blocks over the last 120 blocks is: " +averageTime);
+            /*printf(" GetNextWorkRequired(): Total Time (over 119 time differences) is: %"PRI64d" \n",total);
+            printf(" GetNextWorkRequired(): First Time (over 119 time differences) is: %"PRI64d" \n",last119TimeDifferences[0]);
+            printf(" GetNextWorkRequired(): Last Time (over 119 time differences) is: %"PRI64d" \n",last119TimeDifferences[118]);
+            printf(" GetNextWorkRequired(): Last Time is: %"PRI64d" \n",last120BlockTimes[119]);
+            printf(" GetNextWorkRequired(): 2nd Last Time is: %"PRI64d" \n",last120BlockTimes[118]);
+
+            printf(" GetNextWorkRequired(): First Time is: %"PRI64d" \n",last120BlockTimes[0]);
+            printf(" GetNextWorkRequired(): 2nd Time is: %"PRI64d" \n",last120BlockTimes[1]);*/
+
+            //If the average time between blocks exceeds or is equal to 3 minutes then increase the med time accordingly
+            if(averageTime >= 180) {
+                log.info(" \n Average Time between blocks is too high.. Attempting to Adjust.. \n ");
+                medTime = 130;
+            } else if(averageTime >= 108 && medTime < 120) {
+                //If the average time between blocks is more than 1.8 minutes and medTime is less than 120 seconds (which would ordinarily prompt an increase in difficulty)
+                //limit the stepping to something reasonable(so we don't see massive difficulty spike followed by miners leaving in these situations).
+                medTime = 110;
+                log.info(" \n Medium Time between blocks is too low compared to average time.. Attempting to Adjust.. \n ");
+            }
+        }
 
         if(GoldcoinDefinition.usingMedianDifficultyProtocol(height))
         {
@@ -820,12 +901,13 @@ public abstract class AbstractBlockChain {
                         //Averaging 1.66 minutes per block
 
 
-                        timespan = 110 * 60;
+                        medTime = 110;
                     }
 
 
                 }
             }
+            timespan = medTime * 60;
 
         }
         // Limit the adjustment step.

@@ -67,6 +67,8 @@ public class GoldcoinDefinition {
     public static final boolean usingMedianDifficultyProtocol2(int height)
     { return height > novemberFork2;}
 
+    public static final int mayFork = 248000;
+
     public static final long julyFork = 45000;
     public static final long novemberFork = 103000;
     public static final long novemberFork2 = 118800;
