@@ -8,7 +8,7 @@ import static com.google.goldcoin.core.Utils.COIN;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Eric
+ * User: Stouse49
  * Date: 8/13/13
  * Time: 7:23 PM
  * To change this template use File | Settings | File Templates.
@@ -45,12 +45,12 @@ public class GoldcoinDefinition {
         else return TARGET_TIMESPAN_45000;
     }
 
-    public static final int MAX_MONEY = 121399000;
-    public static final String MAX_MONEY_STRING = "121399000";
+    public static final int MAX_MONEY = 72245700;
+    public static final String MAX_MONEY_STRING = "72245700";
 
     public static final BigInteger DEFAULT_MIN_TX_FEE = BigInteger.valueOf(10000000);
 
-    public static final int PROTOCOL_VERSION = 60014;
+    public static final int PROTOCOL_VERSION = 60018;
     public static final int MIN_PROTOCOL_VERSION = 60005;
     public static final int Port    = 8121;
     public static final int TestPort = 18121;
@@ -73,6 +73,7 @@ public class GoldcoinDefinition {
     public static final long novemberFork = 103000;
     public static final long novemberFork2 = 118800;
     public static boolean hardForkedJuly = false;
+    public static final long febFork = 372000;
     public static final int GetBlockReward(int nHeight)
     {
         int COIN = 1;
@@ -94,8 +95,12 @@ public class GoldcoinDefinition {
         else if(nHeight >= julyFork && nHeight <= 26325000)
         {
             hardForkedJuly = true;
-            //nSubsidy = Calculate(400,julyFork,2,8,nHeight) * COIN;
-            nSubsidy = (int)(50.0/(1.1 + 0.49*((nHeight-julyFork)/262800))) * COIN;
+            if(nHeight >= febFork)
+            {
+                nSubsidy = (int) (50.0 / (1.1 + 0.49 * ((nHeight+4884000 - julyFork) / 262800))) * COIN;
+            } else {
+                nSubsidy = (int) (50.0 / (1.1 + 0.49 * ((nHeight - julyFork) / 262800))) * COIN;
+            }
         } else {
             nSubsidy = 0;
         }
