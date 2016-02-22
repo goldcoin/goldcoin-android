@@ -7,10 +7,10 @@
 	<artifactId>sample-integration-android</artifactId>
 	<packaging>apk</packaging>
 	<version>1.0</version>
-	<name>Sample for Litecoin Integration for Android</name>
+	<name>Sample for GoldCoin Integration for Android</name>
 
 	<parent>
-		<groupId>de.schildbach.wallet.litecoin</groupId>
+		<groupId>de.schildbach.wallet.goldcoin</groupId>
 		<artifactId>base</artifactId>
 		<version>1</version>
 	</parent>

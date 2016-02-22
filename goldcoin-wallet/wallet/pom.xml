@@ -6,7 +6,7 @@
 
 	<artifactId>wallet</artifactId>
 	<packaging>apk</packaging>
-	<version>1.14</version>
+	<version>1.15</version>
 	<name>GoldCoin Wallet</name>
 
 	<parent>
@@ -52,13 +52,13 @@
 		<!-- com.google.litecoin.* -->
 		<dependency>
 			<groupId>com.google</groupId>
-			<artifactId>litecoinj</artifactId>
-			<version>0.81-SNAPSHOT</version>
+			<artifactId>goldcoinj</artifactId>
+			<version>0.82-SNAPSHOT</version>
 		</dependency>
 
 		<!-- de.schildbach.wallet.litecoin.integration.android.* -->
 		<dependency>
-			<groupId>de.schildbach.wallet.litecoin</groupId>
+			<groupId>de.schildbach.wallet.goldcoin</groupId>
 			<artifactId>integration-android</artifactId>
 			<version>1.0</version>
 		</dependency>
@@ -117,7 +117,7 @@
 						<excludeJarResource>.*\.jar$</excludeJarResource>
 					</excludeJarResources>
 					<sdk>
-						<platform>14</platform>
+						<platform>19</platform>
 					</sdk>
 					<sign>
 						<debug>both</debug>
