@@ -124,7 +124,7 @@ public final class BlockListFragment extends SherlockListFragment implements Loa
 	public void onListItemClick(final ListView l, final View v, final int position, final long id)
 	{
 		final StoredBlock storedBlock = adapter.getItem(position);
-		final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.BLOCKEXPLORER_BASE_URL + "block/"
+		final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.BLOCKEXPLORER_BASE_URL + "block?block="
 				+ storedBlock.getHeader().getHashAsString()));
 		startActivity(intent);
 	}

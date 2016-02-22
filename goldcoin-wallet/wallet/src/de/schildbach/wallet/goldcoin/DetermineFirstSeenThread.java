@@ -58,7 +58,7 @@ public abstract class DetermineFirstSeenThread extends Thread
 	{
 		try
 		{
-			final URL url = new URL(Constants.BLOCKEXPLORER_BASE_URL + "address/" + address);
+			final URL url = new URL(Constants.BLOCKEXPLORER_BASE_URL + "address?address=" + address);
 			final URLConnection connection = url.openConnection();
 			connection.connect();
 			final Reader is = new InputStreamReader(new BufferedInputStream(connection.getInputStream()));
